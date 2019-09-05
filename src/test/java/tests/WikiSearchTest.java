@@ -11,3 +11,4 @@ import io.cucumber.testng.CucumberOptions;
 )
 public class WikiSearchTest extends AbstractTestNGCucumberTests {
 }
+
