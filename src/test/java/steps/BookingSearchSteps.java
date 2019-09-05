@@ -29,7 +29,7 @@ public class BookingSearchSteps {
         BookingResultsPage page = new BookingResultsPage(driver);
         page.isPageOpened();
         List<String> hotels = page.getResults();
-        assertThat(horels, contains(arg0));
+        assertThat(hotels, contains(arg0));
     }
 
     @And("rating should be {string}")
