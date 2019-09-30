@@ -24,7 +24,7 @@ public class SearchSteps{
     
     @cucumber.api.java.en.Given("Keyword for search is {string}")
     public void searchKeywordIsString(String keyword) {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/webdrivers/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/webdrivers/chromedriver.exe");
         searchItem = new SearchItem(keyword);
     }
 
