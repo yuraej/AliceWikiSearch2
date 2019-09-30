@@ -23,9 +23,7 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-          - run:
-              name: Chrome version
-              command: google-chrome --version
+
           - run:
               name: Setting chmod for Crome
               command: chmod 777 src/test/resources/webdrivers/linux/chromedriver
