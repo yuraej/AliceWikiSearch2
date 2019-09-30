@@ -23,19 +23,21 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-
-          - run:
-              name: Setting chmod for Crome
-              command: chmod 777 src/test/resources/webdrivers/linux/chromedriver
-          - run:
-              name: Generate allure report
-              command: mvn allure:report
-              when: always
-          - store_test_results:
-              path: target/surefire-reports/junitreports
-              when: always
-          - store_artifacts:
-              path: target/site/allure-maven-plugin/
+      - run:
+          name: Chrome version
+          command: google-chrome --version
+      - run:
+          name: Setting chmod for Crome
+          command: chmod 777 src/test/resources/webdrivers/linux/chromedriver
+      - run:
+          name: Generate allure report
+          command: mvn allure:report
+          when: always
+      - store_test_results:
+          path: target/surefire-reports/junitreports
+          when: always
+      - store_artifacts:
+          path: target/site/allure-maven-plugin/
 workflows:
   version: 2
   commit:
