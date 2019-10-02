@@ -2,12 +2,15 @@ package steps;
 
 import cucumber.api.java.en.Given;
 import io.cucumber.datatable.DataTable;
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import model.SearchItem;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import pages.WikiMainPage;
 import pages.WikiSearchPage;
+import utils.AllureUtils;
 import utils.CapabilitiesGenerator;
 
 import java.util.List;
@@ -24,21 +27,26 @@ public class SearchSteps{
     private SearchItem searchItem;
     
     @cucumber.api.java.en.Given("Keyword for search is {string}")
+    @Step("Вводим слово для поиска")
+    @Description("Описание")
     public void searchKeywordIsString(String keyword) {
       //  System.setProperty("webdriver.chrome.driver", "src/test/resources/webdrivers/chromedriver.exe");
         searchItem = new SearchItem(keyword);
     }
 
     @cucumber.api.java.en.When("User does search")
+    @Step("Пользователь получает результат поиска")
     public void search() {
         driver = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
         driver.get(WIKI_URL);
         wikiMainPage = new WikiMainPage(driver);
         wikiMainPage.searchByKeyword(searchItem.getSearchString());
         searchPage = new WikiSearchPage(driver);
+        AllureUtils.takeScreenshot(driver);
     }
 
     @cucumber.api.java.en.Then("Wiki page {string} is on the first page")
+    @Step("Нет искомой информации на первой стронице")
     public void assertSearchResult(String result) {
         assertThat(String.format("There are no results for search string '%s' on first search page", result),
                 searchPage.getResultLinks(), 
