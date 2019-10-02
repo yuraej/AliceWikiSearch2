@@ -30,6 +30,9 @@ jobs:
           name: Setting chmod for Crome
           command: chmod 777 src/test/resources/webdrivers/linux/chromedriver
       - run:
+          name: Run tests
+          command: mvn clean test
+      - run:
           name: Generate allure report
           command: mvn allure:report
           when: always
@@ -46,7 +49,7 @@ workflows:
   periodical:
     triggers:
       - schedule:
-          cron: "0 0 0 * * ?"
+          cron: "1 4,8,12 * * *"
           filters:
             branches:
               only:
